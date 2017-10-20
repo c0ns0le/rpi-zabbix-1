@@ -45,7 +45,6 @@ COPY zabbix-server-mysql_3.0.2-1+jessie_armhf.deb /tmp/
 RUN dpkg -i /tmp/zabbix-release* \
     && dpkg -i /tmp/zabbix-frontend-php* \
     && dpkg -i /tmp/zabbix-server-mysql* \
-    && dpkg -i /tmp/zabbix-agent* \
     && rm -rf /tmp/* \
     && apt-get clean \
     && apt-get autoclean
