@@ -41,7 +41,6 @@ COPY mysqld.cnf /etc/mysql/my.cnf
 COPY zabbix-release_3.0-1+jessie_all.deb /tmp/
 COPY zabbix-frontend-php_3.0.2-1+jessie_all.deb /tmp/ 
 COPY zabbix-server-mysql_3.0.2-1+jessie_armhf.deb /tmp/
-COPY zabbix-agent_3.0.2-1+jessie_armhf.deb /tmp/
 
 RUN dpkg -i /tmp/zabbix-release* \
     && dpkg -i /tmp/zabbix-frontend-php* \
@@ -53,7 +52,6 @@ RUN dpkg -i /tmp/zabbix-release* \
 COPY zabbix_server.conf /etc/zabbix/zabbix_server.conf
 COPY apache.conf /etc/apache2/apache.conf
 COPY php.ini /etc/php5/apache2/php.ini
-COPY zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
 
 RUN service apache2 restart \
     && usermod -d /var/lib/mysql/ mysql \
@@ -74,6 +72,6 @@ RUN service apache2 restart \
 
 VOLUME /var/lib/mysql
 
-EXPOSE 80 3306 10051 10050
+EXPOSE 80 3306 10050
 
 CMD ["/usr/bin/supervisord"]
