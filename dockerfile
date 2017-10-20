@@ -36,6 +36,19 @@ RUN apt-get update \
     && mkdir -p /var/run/mysqld \
     && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld 
 
+RUN echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "it_IT.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "cs_CZ.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "ko_KR.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "sk_SK.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "uk_UA.UTF-8 UTF-8" >> /etc/locale.gen \
+    && locale-gen
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
 COPY mysqld.cnf /etc/mysql/my.cnf
 COPY zabbix-release_3.0-1+jessie_all.deb /tmp/
@@ -71,6 +84,6 @@ RUN service apache2 restart \
 
 VOLUME /var/lib/mysql
 
-EXPOSE 80 3306 10050
+EXPOSE 80 3306 10051
 
 CMD ["/usr/bin/supervisord"]
