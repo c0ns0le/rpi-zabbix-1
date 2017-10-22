@@ -23,5 +23,5 @@ After few minutes you can run docker container
 
 This command map all ports http, mysql and zabbix server.
 
-_port 3306 is optional if we dont need access to mysql server from outside_
+_port 3306 is optional if you dont need access to mysql server from outside_
 
